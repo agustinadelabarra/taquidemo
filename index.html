@@ -427,7 +427,7 @@ function render(){
     if(on){hl.style.left=(on[1]-6)+'px';hl.style.top=(on[2]-6-y)+'px';hl.style.width=(on[3]+12)+'px';hl.style.height=(on[4]+12)+'px'}
     hl.classList.toggle('on',!!on);
     // en celu, las pantallas de compu se acercan a la zona que se explica
-    if(s.dev==='lap'){var zm=$('zm-lap'),cel=window.innerWidth<=600;
+    if(s.dev==='lap'){var zm=$('zm-lap'),cel=false; // sin zoom: siempre la pantalla completa
       if(cel){var f=on?[on[1]+on[3]/2,on[2]+on[4]/2-y]:(s.foco||[420,260]);zm.style.transformOrigin='0px '+f[1]+'px';zm.style.transform='scale('+(s.zoom||2.1)+')';hl.style.boxShadow='none'}
       else{zm.style.transform='';hl.style.boxShadow=''}}
     if(s.mail){var m=$('mail');m.classList.toggle('noti-on',lt>.5&&lt<2.6);m.classList.toggle('msg-on',lt>=2.2)}
