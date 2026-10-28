@@ -76,7 +76,8 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--foco);outline-offse
 .sello i{font-style:normal;background:linear-gradient(135deg,#6B3FD6,var(--rojo));color:#fff;border-radius:8px;padding:4px 7px;font-size:12px}
 
 /* ---------- reproductor ---------- */
-.player{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:36px;min-height:0;padding-block:4px 10px}
+/* escenario y textos en un bloque centrado: pantalla a la izquierda, explicación al lado */
+.player{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(280px,.85fr);gap:clamp(24px,3vw,48px);width:100%;max-width:1160px;margin-inline:auto;min-height:0;padding-block:4px 10px}
 .stage{position:relative;min-height:0;display:grid;place-items:center}
 .dev{position:absolute;left:50%;top:50%;transform-origin:center;transition:opacity .35s}
 .dev.off{opacity:0;pointer-events:none}
@@ -366,12 +367,9 @@ var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').mat
 function fit(){
   var st=$('stage'),w=st.clientWidth,h=st.clientHeight;
   $('marcas').style.setProperty('--mw',Math.min(300,w*.8,h*.94*390/800)+'px');
-  $('marcas').style.justifyItems=w>600?'end':'center';$('marcas').style.paddingRight=w>600?'8px':'0';
   [['d-phone',414,868],['d-lap',1406,850]].forEach(function(d){
     var k=Math.min(w/d[1],h/d[2])*0.96;$(d[0]).style.transform='translate(-50%,-50%) scale('+k+')';
-    // en compu el celu se arrima al texto de la derecha; en celu (una columna) queda centrado
-    var junto=d[0]==='d-phone'&&w>600;
-    $(d[0]).style.left=junto?Math.max(w/2,w-d[1]*k/2-8)+'px':'50%';$(d[0]).style.top='50%';$(d[0]).style.marginLeft='0';
+    $(d[0]).style.left='50%';$(d[0]).style.top='50%';$(d[0]).style.marginLeft='0';
   });
 }
 window.addEventListener('resize',fit);
