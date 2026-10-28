@@ -348,7 +348,7 @@ var S=[
  {ch:2,dev:'lap',img:'p_dia',d:6,h:'Cómo viene la venta',p:'Día por día y contra lo esperado, para medir cada campaña.',hl:[[1.2,109,246,568,280,6]]},
  {ch:2,dev:'lap',img:'p_pagos',d:8,h:'Pagos controlados',p:'La IA revisa cada comprobante y marca solo los que hay que mirar. Vos, al ensayo.',x:IA,hl:[[1.2,1150,392,112,376,5.6]],taps:[[6.6,1017,472]]},
  {ch:2,dev:'lap',img:'p_ficha',d:7,h:'Todo en una ficha',p:'El comprobante, lo que leyó la IA y las acciones: reenviar entradas o cambiar butaca y artista.',hl:[[1.4,714,578,442,156,7]]},
- {ch:2,dev:'lap',img:'p_artistas',d:5,foco:[500,520],h:'Ventas por artista',p:'Quién vendió cuánto, por función. Y todo en un Excel con un clic.'},
+ {ch:2,dev:'lap',img:'p_artistas',d:5,foco:[0,0],zoom:1.5,h:'Ventas por artista',p:'Quién vendió cuánto, por función. Y todo en un Excel con un clic.'},
  {card:['Capítulo 3','El elenco','Cada artista sigue sus ventas'],ch:3,d:2.4},
  {ch:3,dev:'phone',img:'a01_quien',d:4.5,h:'Cada artista entra con su clave',p:'Elige su nombre y listo.',taps:[[2.4,195,269]]},
  {ch:3,dev:'phone',img:'a02_res_full',d:7,h:'Y sigue sus ventas',p:'Cuántas entradas vendió, a quién, y cómo se llena la sala.',scroll:[[0,0],[3,0],[5.4,209]]}
@@ -427,8 +427,8 @@ function render(){
     if(on){hl.style.left=(on[1]-6)+'px';hl.style.top=(on[2]-6-y)+'px';hl.style.width=(on[3]+12)+'px';hl.style.height=(on[4]+12)+'px'}
     hl.classList.toggle('on',!!on);
     // en celu, las pantallas de compu se acercan a la zona que se explica
-    if(s.dev==='lap'){var zm=$('zm-lap'),cel=$('stage').clientWidth<600;
-      if(cel){var f=on?[on[1]+on[3]/2,on[2]+on[4]/2-y]:(s.foco||[420,260]);zm.style.transformOrigin=f[0]+'px '+f[1]+'px';zm.style.transform='scale(2.1)';hl.style.boxShadow='none'}
+    if(s.dev==='lap'){var zm=$('zm-lap'),cel=window.innerWidth<=600;
+      if(cel){var f=on?[on[1]+on[3]/2,on[2]+on[4]/2-y]:(s.foco||[420,260]);zm.style.transformOrigin='0px '+f[1]+'px';zm.style.transform='scale('+(s.zoom||2.1)+')';hl.style.boxShadow='none'}
       else{zm.style.transform='';hl.style.boxShadow=''}}
     if(s.mail){var m=$('mail');m.classList.toggle('noti-on',lt>.5&&lt<2.6);m.classList.toggle('msg-on',lt>=2.2)}
   }
